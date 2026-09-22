@@ -18,21 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Detect package manager
-        id: detect-package-manager
-        run: |
-          echo "manager=npm" >> $GITHUB_OUTPUT
-          echo "command=ci" >> $GITHUB_OUTPUT
-          echo "runner=npx --no-install" >> $GITHUB_OUTPUT
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -40,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build with Next.js
+      - name: Build static export
         run: npm run build
         env:
           GITHUB_ACTIONS: "true"
