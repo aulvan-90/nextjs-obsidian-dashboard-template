@@ -1,0 +1,32 @@
+{
+  "name": "nextjs-obsidian-dashboard-template",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Premium Next.js 16 + Tailwind CSS v4 Dashboard Starter with Obsidian Cyber-Executive dark theme and Crisp Studio light theme",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.38.0",
+    "next": "16.3.3",
+    "next-themes": "^0.4.6",
+    "postcss": "^8.5.26",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tailwind-merge": "^3.5.4",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.3",
+    "typescript": "^5"
+  }
+}
