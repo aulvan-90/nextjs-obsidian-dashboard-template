@@ -5,53 +5,47 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
   LayoutDashboard, 
-  Layers, 
+  Laptop, 
   Users, 
-  FileText, 
+  Wrench, 
+  Tag,
   Settings, 
   Menu, 
   X, 
-  Sparkles,
+  LogOut,
   ChevronRight
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
-export interface NavItem {
-  label: string;
-  href: string;
-  icon: React.ElementType;
-  badge?: string | number;
-}
-
-const defaultNavItems: NavItem[] = [
-  { label: "Dasbor Utama", href: "/", icon: LayoutDashboard },
-  { label: "Manajemen Data", href: "/data", icon: Layers, badge: "New" },
-  { label: "Pengguna & Tim", href: "/users", icon: Users },
-  { label: "Laporan & Audit", href: "/reports", icon: FileText },
-  { label: "Pengaturan Sistem", href: "/settings", icon: Settings },
-];
-
-export function Navigation({ items = defaultNavItems }: { items?: NavItem[] }) {
+export function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  const navItems = [
+    { label: "Dasbor", href: "/", icon: LayoutDashboard },
+    { label: "Aset & Perangkat", href: "/assets", icon: Laptop },
+    { label: "Karyawan", href: "/employees", icon: Users },
+    { label: "Perbaikan", href: "/repairs", icon: Wrench },
+    { label: "Kategori", href: "/categories", icon: Tag },
+  ];
 
   return (
     <>
       {/* Mobile Topbar */}
-      <div className="lg:hidden sticky top-0 z-40 flex items-center justify-between px-4 py-3 bg-card/80 backdrop-blur-md border-b border-border">
+      <div className="lg:hidden sticky top-0 z-40 flex items-center justify-between px-4 py-3 bg-[#0d1017]/90 backdrop-blur-md border-b border-slate-800">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
-            <Sparkles className="w-4 h-4" />
+          <div className="px-2 py-1 rounded bg-white text-slate-950 font-black text-xs tracking-tighter">
+            KURHANZ
           </div>
-          <span className="font-bold text-sm tracking-tight text-foreground">
-            OBSIDIAN <span className="text-sky-500">CORP</span>
+          <span className="font-bold text-xs tracking-tight text-white">
+            IT Asset Management
           </span>
         </div>
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-lg border border-border text-foreground hover:bg-accent cursor-pointer"
+            className="p-2 rounded-lg border border-slate-800 text-foreground hover:bg-slate-800 cursor-pointer"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -69,23 +63,23 @@ export function Navigation({ items = defaultNavItems }: { items?: NavItem[] }) {
 
       {/* Desktop & Drawer Sidebar */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-card border-r border-border flex flex-col justify-between transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-[#08090e] border-r border-slate-800/80 flex flex-col justify-between transition-transform duration-300 lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="p-5 flex flex-col gap-6">
+        <div className="p-4 flex flex-col gap-6">
           {/* Logo Header */}
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 group-hover:border-sky-500/50 transition-colors">
-                <Sparkles className="w-5 h-5" />
+              <div className="px-2.5 py-1.5 rounded-lg bg-white text-slate-950 font-black text-xs tracking-tighter flex items-center justify-center shadow-sm">
+                KURHANZ
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-sm tracking-wider text-foreground">
-                  ENTERPRISE
+                <span className="font-extrabold text-xs tracking-wider text-white">
+                  PT KURHANZ TRANS
                 </span>
-                <span className="text-[11px] text-muted-foreground font-mono">
-                  v1.0.0 • Starter
+                <span className="text-[10px] text-sky-400 font-mono">
+                  IT Asset Management
                 </span>
               </div>
             </Link>
@@ -95,11 +89,11 @@ export function Navigation({ items = defaultNavItems }: { items?: NavItem[] }) {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex flex-col gap-1.5">
-            <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase px-2 mb-1">
+          <nav className="flex flex-col gap-1">
+            <span className="text-[10px] font-bold tracking-wider text-slate-500 uppercase px-2 mb-1">
               Menu Navigasi
             </span>
-            {items.map((item) => {
+            {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href;
               return (
@@ -107,39 +101,55 @@ export function Navigation({ items = defaultNavItems }: { items?: NavItem[] }) {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group ${
+                  className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200 group ${
                     isActive
-                      ? "bg-sky-500/10 text-sky-400 border border-sky-500/30 font-semibold shadow-sm shadow-sky-500/5"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                      ? "bg-sky-500/10 text-sky-400 border border-sky-500/30 shadow-sm shadow-sky-500/10"
+                      : "text-slate-400 hover:text-white hover:bg-slate-800/50"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 transition-transform group-hover:scale-110 ${isActive ? "text-sky-400" : "text-muted-foreground"}`} />
+                  <div className="flex items-center gap-2.5">
+                    <Icon className={`w-4 h-4 ${isActive ? "text-sky-400" : "text-slate-400 group-hover:text-white"}`} />
                     <span>{item.label}</span>
                   </div>
-                  {item.badge && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-sky-500/20 text-sky-400 border border-sky-500/30">
-                      {item.badge}
-                    </span>
-                  )}
                 </Link>
               );
             })}
           </nav>
         </div>
 
-        {/* User Session Footer */}
-        <div className="p-4 m-3 rounded-2xl bg-accent/50 border border-border flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">
-              AD
+        {/* User Session Footer (Identical Kurhanz Session Box) */}
+        <div className="p-4 flex flex-col gap-3">
+          <div className="p-3 rounded-xl bg-[#0d1017] border border-slate-800 flex flex-col gap-2">
+            <span className="text-[10px] font-mono uppercase text-slate-500 font-bold tracking-wider">
+              Sesi Akun (Admin)
+            </span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 font-bold text-xs">
+                  AD
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs font-bold text-white leading-tight">Admin IT</span>
+                  <span className="text-[10px] text-slate-400">Kendali Penuh</span>
+                </div>
+              </div>
+              <button className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300">
+                Ubah
+              </button>
             </div>
-            <div className="flex flex-col">
-              <span className="text-xs font-semibold text-foreground leading-tight">Admin System</span>
-              <span className="text-[10px] text-muted-foreground font-mono">admin@domain.com</span>
-            </div>
+            <button className="mt-1 w-full py-1.5 rounded-lg border border-rose-500/30 bg-rose-500/5 hover:bg-rose-500/10 text-rose-400 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer">
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Keluar (Logout)</span>
+            </button>
           </div>
-          <ChevronRight className="w-4 h-4 text-muted-foreground" />
+
+          <div className="flex items-center justify-between px-1 text-[11px] text-slate-500">
+            <Link href="/settings" className="hover:text-slate-300 flex items-center gap-1.5">
+              <Settings className="w-3.5 h-3.5" />
+              <span>Pengaturan</span>
+            </Link>
+            <span className="font-mono text-[10px]">© 2026</span>
+          </div>
         </div>
       </aside>
     </>

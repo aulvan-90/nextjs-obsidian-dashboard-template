@@ -19,14 +19,14 @@
   .dark {
     --background: #08090e;
     --foreground: #f8fafc;
-    --card: #0e111a;
+    --card: #0d1017;
     --card-foreground: #f8fafc;
-    --border: #1e2433;
+    --border: #1a202c;
     --primary: #38bdf8;
     --primary-foreground: #08090e;
     --muted: #94a3b8;
     --muted-foreground: #64748b;
-    --accent: #151a26;
+    --accent: #131824;
   }
 }
 
@@ -35,7 +35,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Custom Scrollbar for sleek Obsidian feel */
