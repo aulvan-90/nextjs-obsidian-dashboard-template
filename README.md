@@ -1,8 +1,13 @@
 # 🌌 Next.js Obsidian Dashboard Template
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-38bdf8?style=for-the-badge&logo=githubpages&logoColor=white)](https://aulvan-90.github.io/nextjs-obsidian-dashboard-template/)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+
 Starter kit antarmuka dasbor enterprise modern berbasis **Next.js 16 (App Router)**, **React 19**, dan **Tailwind CSS v4** dengan estetika **Obsidian Cyber-Executive (Dark Mode)** dan **Crisp Studio (Light Mode)**.
 
-Template ini dirancang untuk dapat digunakan ulang (*reusable*) pada berbagai proyek sistem informasi seperti **ERP, CRM, Inventaris, Human Resource (HRIS), Billing/Keuangan, hingga Portal Analitik**.
+👉 **[Lihat Live Demo di GitHub Pages](https://aulvan-90.github.io/nextjs-obsidian-dashboard-template/)**
 
 ---
 
@@ -50,62 +55,6 @@ npm install
 npm run dev
 ```
 Buka browser Anda di **[http://localhost:3000](http://localhost:3000)**.
-
----
-
-## 📂 Struktur Direktori
-
-```text
-├── src/
-│   ├── app/
-│   │   ├── globals.css      # Variabel warna tema Dark Obsidian & Light Studio
-│   │   ├── layout.tsx       # Root layout dengan Font Google & ThemeProvider
-│   │   └── page.tsx         # Dasbor utama dengan KPI Cards & Tabel modular
-│   ├── components/
-│   │   ├── Navigation.tsx   # Sidebar Desktop & Topbar Mobile
-│   │   ├── StatCard.tsx     # Komponen kartu statistik / ringkasan metrik
-│   │   ├── theme-provider.tsx
-│   │   └── theme-toggle.tsx # Tombol ganti dark / light mode
-│   └── lib/
-│       └── utils.ts         # Helper utility class merge (clsx & twMerge)
-├── next.config.ts           # Konfigurasi Next.js
-├── postcss.config.mjs       # Konfigurasi PostCSS Tailwind v4
-├── tsconfig.json            # Konfigurasi TypeScript
-├── package.json
-└── README.md
-```
-
----
-
-## 🎨 Panduan Kustomisasi
-
-### 1. Mengubah Menu Navigasi
-Buka [`src/components/Navigation.tsx`](src/components/Navigation.tsx), ubah array `defaultNavItems`:
-```tsx
-const defaultNavItems: NavItem[] = [
-  { label: "Dasbor", href: "/", icon: LayoutDashboard },
-  { label: "Faktur & Tagihan", href: "/invoices", icon: Layers, badge: "3" },
-  { label: "Pelanggan", href: "/customers", icon: Users },
-  { label: "Laporan Keuangan", href: "/reports", icon: FileText },
-  { label: "Pengaturan", href: "/settings", icon: Settings },
-];
-```
-
-### 2. Menambahkan Kartu KPI Baru
-Gunakan komponen `<StatCard />`:
-```tsx
-import { StatCard } from "@/components/StatCard";
-import { DollarSign } from "lucide-react";
-
-<StatCard
-  title="Total Pendapatan"
-  value="Rp 128.500.000"
-  subtitle="+14% dari bulan lalu"
-  icon={DollarSign}
-  highlightColor="emerald"
-  badge={{ text: "Target Tercapai", variant: "emerald" }}
-/>
-```
 
 ---
 
